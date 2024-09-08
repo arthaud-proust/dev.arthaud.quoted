@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@layer components {
+    .link {
+        @apply font-bold text-lg hover:underline;
+    }
+
+    input, textarea, select {
+        @apply px-3 py-2 bg-bunker-950 rounded-lg;
+    }
+
+    button {
+        @apply px-3 py-2.5 bg-bunker-800 rounded-lg font-bold hover:bg-bunker-700;
+    }
+}

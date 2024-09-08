@@ -1,3 +1,5 @@
 <x-layout>
-    Coucou
+    <div class="container">
+        Coucou
+    </div>
 </x-layout>
