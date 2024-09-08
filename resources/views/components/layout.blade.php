@@ -29,7 +29,7 @@
 <footer class=" py-20 bg-bunker-800">
     <div class="container">
         <p>Par <a href="https://arthaudproust.fr" class="link">Arthaud Proust</a></p>
-        <p>Libre de droit</p>
+        <p>Libre de droits</p>
     </div>
 </footer>
 </body>
