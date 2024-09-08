@@ -9,10 +9,18 @@
     }
 
     input, textarea, select {
-        @apply px-3 py-2 bg-bunker-950 rounded-lg;
+        @apply bg-bunker-950 placeholder:text-bunker-200;
+    }
+
+    button, input, select {
+        @apply h-11 px-3 py-2 rounded-lg;
+    }
+
+    textarea {
+        @apply py-2 px-3 rounded-lg ;
     }
 
     button {
-        @apply px-3 py-2.5 bg-bunker-800 rounded-lg font-bold hover:bg-bunker-700;
+        @apply bg-bunker-800 font-bold hover:bg-bunker-700;
     }
 }

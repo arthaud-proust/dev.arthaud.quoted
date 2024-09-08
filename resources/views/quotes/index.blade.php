@@ -1,6 +1,17 @@
 <x-layout>
     <div class="container">
-        <h1 class="text-4xl">Voir les {{ $quotes->total() }} citations</h1>
+        <h1 class="text-4xl">
+            @if($quotes->total() === 0)
+                Aucune citation
+            @elseif($quotes->total() === 1)
+                Voir la citation
+            @else
+                Voir les {{ $quotes->total() }} citations
+            @endif
+            @if(request()->query('q'))
+                avec la recherche "{{ request()->query('q') }}"
+            @endif
+        </h1>
 
         <div class="mt-32">
             <x-quote.grid :quotes="$quotes" />

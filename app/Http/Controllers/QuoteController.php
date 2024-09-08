@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SearchQuoteRequest;
 use App\Http\Requests\StoreQuoteRequest;
 use App\Http\Resources\QuoteResource;
 use App\Models\Quote;
@@ -13,10 +14,16 @@ use function view;
 
 class QuoteController extends Controller
 {
-    public function index()
+    public function index(SearchQuoteRequest $request)
     {
+        $validated = $request->validated();
+        $quotes = Quote::when(isset($validated['q']), static fn($query) => $query
+            ->where('content', 'LIKE', "%{$validated['q']}%")
+            ->orWhere('author', 'LIKE', "%{$validated['q']}%")
+        );
+
         return view('quotes.index', [
-            'quotes' => Quote::paginate(10),
+            'quotes' => $quotes->paginate(10),
         ]);
     }
 
