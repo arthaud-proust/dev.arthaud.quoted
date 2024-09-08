@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Hashids\Hashids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -28,5 +29,20 @@ class Quote extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public static function hashFromId(int $id): string
+    {
+        return (new Hashids('', 5))->encode($id);
+    }
+
+    public function getHashAttribute(): string
+    {
+        return static::hashFromId($this->id);
+    }
+
+    public static function idFromHash(string $hash): int
+    {
+        return (new Hashids('', 5))->decode($hash)[0];
     }
 }

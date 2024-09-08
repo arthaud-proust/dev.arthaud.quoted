@@ -10,10 +10,16 @@
 </head>
 <body class="font-sans antialiased bg-bunker-900 text-white text-lg">
 <div class="min-h-screen">
-    <nav class="container sticky top-0 flex py-4 gap-4 bg-bunker-900">
-        <a href="{{ route('quotes.index') }}" class="link">Citations</a>
-        <a href="{{ route('quotes.create') }}" class="link">Contribuer</a>
-    </nav>
+    <header class="sticky z-50 top-0 bg-bunker-900">
+        <div class="container  flex h-16 py-4 gap-4 justify-between ">
+            <a href="/" class="link">Quoted.</a>
+
+            <nav class="flex gap-4">
+                <a href="{{ route('quotes.index') }}" class="link">Citations</a>
+                <a href="{{ route('quotes.create') }}" class="link">Contribuer</a>
+            </nav>
+        </div>
+    </header>
 
     <main class="py-20">
         {{ $slot }}
@@ -22,7 +28,7 @@
 
 <footer class=" py-20 bg-bunker-800">
     <div class="container">
-        <p>Par <a href="https://arthaudproust.fr">Arthaud Proust</a></p>
+        <p>Par <a href="https://arthaudproust.fr" class="link">Arthaud Proust</a></p>
         <p>Libre de droit</p>
     </div>
 </footer>

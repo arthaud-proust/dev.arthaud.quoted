@@ -5,7 +5,7 @@
 
 @layer components {
     .link {
-        @apply font-bold text-lg hover:underline;
+        @apply font-bold text-lg hover:underline inline-flex items-center justify-center;
     }
 
     input, textarea, select {
