@@ -9,6 +9,7 @@ use App\Models\Quote;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Str;
+use function abort;
 use function redirect;
 use function view;
 
@@ -17,10 +18,11 @@ class QuoteController extends Controller
     public function index(SearchQuoteRequest $request)
     {
         $validated = $request->validated();
-        $quotes = Quote::when(isset($validated['q']), static fn($query) => $query
-            ->where('content', 'LIKE', "%{$validated['q']}%")
-            ->orWhere('author', 'LIKE', "%{$validated['q']}%")
-        );
+        $quotes = Quote::validated()
+            ->when(isset($validated['q']), static fn($query) => $query
+                ->where('content', 'LIKE', "%{$validated['q']}%")
+                ->orWhere('author', 'LIKE', "%{$validated['q']}%")
+            );
 
         return view('quotes.index', [
             'quotes' => $quotes->paginate(10),
@@ -46,17 +48,21 @@ class QuoteController extends Controller
             ]
         );
 
-        $quote = Quote::create([
+        Quote::create([
             'author' => $validated['author'],
             'content' => $validated['content'],
             'user_id' => $user->id,
         ]);
 
-        return redirect()->route('quotes.show', $quote);
+        return redirect()->route('quotes.index');
     }
 
     public function show(Quote $quote)
     {
+        if (!$quote->validated) {
+            abort(404);
+        }
+
         $quote->update([
             'views' => $quote->views + 1,
         ]);

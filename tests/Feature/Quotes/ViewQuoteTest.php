@@ -4,31 +4,44 @@ namespace Tests\Feature\Quotes;
 
 use App\Models\Quote;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Symfony\Component\HttpFoundation\Response;
 use Tests\TestCase;
 
 class ViewQuoteTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_can_view_quote(): void
+    public function test_cannot_view_unvalidated_quote(): void
     {
-        $quote = Quote::factory()->create();
+        $quote = Quote::factory()->create([
+            'validated' => false,
+        ]);
 
-        $response = $this->get("/quotes/$quote->id");
+        $response = $this->get("/quotes/$quote->hash");
 
-        $response->assertStatus(Response::HTTP_OK);
+        $response->assertNotFound();
+    }
+
+    public function test_can_view_validated_quote(): void
+    {
+        $quote = Quote::factory()->create([
+            'validated' => true,
+        ]);
+
+        $response = $this->get("/quotes/$quote->hash");
+
+        $response->assertOk();
     }
 
     public function test_view_quote_update_its_view_count(): void
     {
         $quote = Quote::factory()->create([
             'views' => 0,
+            'validated' => true,
         ]);
 
-        $response = $this->get("/quotes/$quote->id");
+        $response = $this->get("/quotes/$quote->hash");
 
-        $response->assertStatus(Response::HTTP_OK);
+        $response->assertOk();
 
         $this->assertEquals(1, $quote->fresh()->views);
     }

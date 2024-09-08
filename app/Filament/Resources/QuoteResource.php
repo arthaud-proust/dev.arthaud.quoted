@@ -90,4 +90,19 @@ class QuoteResource extends Resource
             'edit' => Pages\EditQuote::route('/{record}/edit'),
         ];
     }
+
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::notValidated()->count();
+    }
+
+    public static function getNavigationBadgeColor(): ?string
+    {
+        return static::getModel()::notValidated()->count() ? 'warning' : 'success';
+    }
+
+    public static function getNavigationBadgeTooltip(): ?string
+    {
+        return 'Citations à valider';
+    }
 }

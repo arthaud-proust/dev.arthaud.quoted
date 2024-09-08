@@ -4,7 +4,6 @@ namespace Tests\Feature\Quotes;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Symfony\Component\HttpFoundation\Response;
 use Tests\TestCase;
 
 class CreateQuoteTest extends TestCase
@@ -19,11 +18,28 @@ class CreateQuoteTest extends TestCase
             'email' => 'john.doe@email.com',
         ]);
 
-        $response->assertStatus(Response::HTTP_FOUND);
+        $response->assertRedirect('/quotes');
 
         $this->assertDatabaseHas('quotes', [
             'author' => 'John doe',
             'content' => 'Lorem ipsum',
+        ]);
+    }
+
+    public function test_created_quote_is_not_validated(): void
+    {
+        $response = $this->post('/quotes', [
+            'author' => 'John doe',
+            'content' => 'Lorem ipsum',
+            'email' => 'john.doe@email.com',
+        ]);
+
+        $response->assertRedirect('/quotes');
+
+        $this->assertDatabaseHas('quotes', [
+            'author' => 'John doe',
+            'content' => 'Lorem ipsum',
+            'validated' => false,
         ]);
     }
 
@@ -39,7 +55,7 @@ class CreateQuoteTest extends TestCase
             'email' => 'john.doe@email.com',
         ]);
 
-        $response->assertStatus(Response::HTTP_FOUND);
+        $response->assertRedirect('/quotes');
 
         $this->assertDatabaseHas('quotes', [
             'author' => 'John doe',
@@ -56,7 +72,7 @@ class CreateQuoteTest extends TestCase
             'email' => 'john.doe@email.com',
         ]);
 
-        $response->assertStatus(Response::HTTP_FOUND);
+        $response->assertRedirect('/quotes');
 
         $this->assertDatabaseHas('users', [
             'email' => 'john.doe@email.com',
