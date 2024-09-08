@@ -22,7 +22,6 @@ class QuoteFactory extends Factory
             'content' => $this->faker->sentence,
             'validated' => $this->faker->boolean,
             'views' => $this->faker->numberBetween(0, 10000),
-            'daily_count' => $this->faker->numberBetween(0, 5),
             'user_id' => User::factory(),
         ];
     }

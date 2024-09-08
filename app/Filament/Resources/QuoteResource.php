@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\QuoteResource\Pages;
-use App\Filament\Resources\QuoteResource\RelationManagers;
 use App\Models\Quote;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -35,9 +34,6 @@ class QuoteResource extends Resource
                 Forms\Components\TextInput::make('views')
                     ->required()
                     ->numeric(),
-                Forms\Components\TextInput::make('daily_count')
-                    ->required()
-                    ->numeric(),
             ]);
     }
 
@@ -55,9 +51,6 @@ class QuoteResource extends Resource
                 Tables\Columns\IconColumn::make('validated')
                     ->boolean(),
                 Tables\Columns\TextColumn::make('views')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('daily_count')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')

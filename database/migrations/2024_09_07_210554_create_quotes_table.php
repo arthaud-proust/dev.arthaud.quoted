@@ -18,7 +18,6 @@ return new class extends Migration {
             $table->string('content');
             $table->boolean('validated');
             $table->integer('views');
-            $table->integer('daily_count');
             $table->timestamps();
         });
     }

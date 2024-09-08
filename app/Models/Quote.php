@@ -17,13 +17,11 @@ class Quote extends Model
         'content',
         'validated',
         'views',
-        'daily_count',
     ];
 
     protected $attributes = [
         'validated' => false,
         'views' => 0,
-        'daily_count' => 0,
     ];
 
     public function user(): BelongsTo

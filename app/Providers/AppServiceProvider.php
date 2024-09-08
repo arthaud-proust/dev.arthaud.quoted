@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Quote;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
@@ -22,6 +23,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Carbon::setLocale(config('app.locale'));
+
         Route::bind('quoteHash', function (string $hash) {
             try {
                 return Quote::where('id', Quote::idFromHash($hash))->firstOrFail();
