@@ -10,7 +10,8 @@
         "filament/filament": "^3.2",
         "hashids/hashids": "^5.0",
         "laravel/framework": "^11.9",
-        "laravel/tinker": "^2.9"
+        "laravel/tinker": "^2.9",
+        "spatie/simple-excel": "^3.6"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
