@@ -24,7 +24,7 @@ class QuotePolicy
 
     public function update(User $user, Quote $quote): bool
     {
-        return true;
+        return $user->admin;
     }
 
     public function delete(User $user, Quote $quote): bool
