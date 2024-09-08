@@ -1,0 +1,43 @@
+name: Build
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        uses: actions/checkout@v3
+
+      -
+        name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv
+          coverage: none
+
+      -
+        name: Run composer install
+        run: composer install -n --prefer-dist
+
+      -
+        name: Run npm install
+        run: npm install
+
+      -
+        name: Run npm build
+        run: npm run build
+
+      -
+        name: Push on branch
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git config push.default current
+          git checkout -b release/main
+          git add --force public/build
+          git commit -m "build"
+          git push origin release/main --force
