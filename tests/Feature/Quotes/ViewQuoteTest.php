@@ -16,7 +16,7 @@ class ViewQuoteTest extends TestCase
             'validated' => false,
         ]);
 
-        $response = $this->get("/quotes/$quote->hash");
+        $response = $this->get("/$quote->hash");
 
         $response->assertNotFound();
     }
@@ -27,7 +27,7 @@ class ViewQuoteTest extends TestCase
             'validated' => true,
         ]);
 
-        $response = $this->get("/quotes/$quote->hash");
+        $response = $this->get("/$quote->hash");
 
         $response->assertOk();
     }
@@ -39,7 +39,7 @@ class ViewQuoteTest extends TestCase
             'validated' => true,
         ]);
 
-        $response = $this->get("/quotes/$quote->hash");
+        $response = $this->get("/$quote->hash");
 
         $response->assertOk();
 
