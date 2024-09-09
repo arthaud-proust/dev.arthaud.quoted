@@ -20,7 +20,7 @@ class QuoteFactory extends Factory
         return [
             'author' => $this->faker->name,
             'content' => $this->faker->sentence,
-            'validated' => $this->faker->boolean,
+            'validated' => false,
             'views' => $this->faker->numberBetween(0, 10000),
             'user_id' => User::factory(),
         ];

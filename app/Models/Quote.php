@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\URL;
 
 class Quote extends Model
 {
@@ -23,6 +24,10 @@ class Quote extends Model
     protected $attributes = [
         'validated' => false,
         'views' => 0,
+    ];
+
+    protected $casts = [
+        'validated' => 'boolean',
     ];
 
     public function user(): BelongsTo
@@ -53,5 +58,10 @@ class Quote extends Model
     public function scopeNotValidated(Builder $query): Builder
     {
         return $query->where('validated', '=', false);
+    }
+
+    public function temporaryValidationUrl(): string
+    {
+        return URL::signedRoute('quotes.validate', ['quoteHash' => $this->hash]);
     }
 }

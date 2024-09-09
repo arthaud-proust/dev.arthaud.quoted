@@ -81,7 +81,7 @@ class CreateQuoteTest extends TestCase
         ]);
     }
 
-    public function test_create_quote_will_send_notifiaction_to_admins(): void
+    public function test_create_quote_will_send_notification_to_admins(): void
     {
         Notification::fake();
 
