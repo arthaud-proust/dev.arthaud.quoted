@@ -41,15 +41,15 @@ class QuoteResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('user.name')
-                    ->numeric()
-                    ->sortable(),
+
+                Tables\Columns\ToggleColumn::make('validated'),
                 Tables\Columns\TextColumn::make('author')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('content')
                     ->searchable(),
-                Tables\Columns\IconColumn::make('validated')
-                    ->boolean(),
+                Tables\Columns\TextColumn::make('user.name')
+                    ->numeric()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('views')
                     ->numeric()
                     ->sortable(),
