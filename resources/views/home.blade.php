@@ -1,9 +1,8 @@
 <x-layouts.app>
-    <div class="container">
+    <div class="container mt-8">
         <section>
-
             <h1 class="text-8xl md:text-9xl -ml-2">Quoted.</h1>
-            <p class="mt-2 text-4xl">Des citations philosophiques et poétiques.</p>
+            <p class="mt-2 text-2xl md:text-4xl">Des citations philosophiques et poétiques.</p>
         </section>
 
         <section>
