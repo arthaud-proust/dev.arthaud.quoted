@@ -6,11 +6,7 @@
 
     <title>{{ $title ?? 'Quoted' }}</title>
 
-    @vite('resources/js/app.js')
     @vite('resources/css/app.css')
-    <style>[x-cloak] {
-            display: none !important;
-        }</style>
 </head>
 <body class="overflow-x-hidden font-sans antialiased bg-bunker-900 text-white text-lg" x-data="{isMenuOpen: false}">
 <header class="fixed w-full z-50 top-0 bg-bunker-900">
@@ -30,13 +26,13 @@
             <a href="{{ route('quotes.create') }}" class="link">Contribuer</a>
         </nav>
 
-        <button class="z-50 md:hidden" @click="$refs.modal.showModal()">Menu</button>
+        <button class="z-50 md:hidden" id="menuOpener">Menu</button>
 
-        <dialog x-ref="modal"
+        <dialog id="menu"
                 class="md:hidden backdrop:bg-bunker-900 bg-bunker-900 m-0 container h-screen w-full flex-col max-w-full max-h-full text-white">
             <div class="h-full w-full flex flex-col">
                 <div class="flex h-16 items-center justify-end">
-                    <button class="z-50 md:hidden" @click="$refs.modal.close()">Fermer</button>
+                    <button class="z-50 md:hidden" id="menuCloser">Fermer</button>
                 </div>
 
                 <div class="grow flex flex-col gap-12 py-8 justify-center px-4">
@@ -57,6 +53,16 @@
             </div>
 
         </dialog>
+
+        <script>
+            const menu = document.getElementById('menu');
+            document.getElementById('menuOpener').addEventListener('click', function() {
+                menu.showModal();
+            });
+            document.getElementById('menuCloser').addEventListener('click', function() {
+                menu.close();
+            });
+        </script>
     </div>
 </header>
 
