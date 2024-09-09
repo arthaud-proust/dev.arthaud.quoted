@@ -38,6 +38,7 @@ jobs:
           git config user.email github-actions@github.com
           git config push.default current
           git checkout -b release/main
+          git add .
           git add --force public/build
-          git commit -m "build"
+          git commit --reuse-message HEAD
           git push origin release/main --force
