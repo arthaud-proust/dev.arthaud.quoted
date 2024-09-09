@@ -7,7 +7,9 @@ use App\Http\Requests\StoreQuoteRequest;
 use App\Http\Resources\QuoteResource;
 use App\Models\Quote;
 use App\Models\User;
+use App\Notifications\NewQuote;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Str;
 use function abort;
 use function redirect;
@@ -48,11 +50,13 @@ class QuoteController extends Controller
             ]
         );
 
-        Quote::create([
+        $quote = Quote::create([
             'author' => $validated['author'],
             'content' => $validated['content'],
             'user_id' => $user->id,
         ]);
+
+        Notification::send(User::admin()->get(), new NewQuote($quote));
 
         return redirect()->route('quotes.index');
     }

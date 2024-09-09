@@ -3,7 +3,9 @@
 namespace Tests\Feature\Quotes;
 
 use App\Models\User;
+use App\Notifications\NewQuote;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Notification;
 use Tests\TestCase;
 
 class CreateQuoteTest extends TestCase
@@ -77,5 +79,22 @@ class CreateQuoteTest extends TestCase
         $this->assertDatabaseHas('users', [
             'email' => 'john.doe@email.com',
         ]);
+    }
+
+    public function test_create_quote_will_send_notifiaction_to_admins(): void
+    {
+        Notification::fake();
+
+        $admin = User::factory()->create([
+            'admin' => true,
+        ]);
+
+        $this->post('/quotes', [
+            'author' => 'John doe',
+            'content' => 'Lorem ipsum',
+            'email' => 'john.doe@email.com',
+        ]);
+
+        Notification::assertSentTo($admin, NewQuote::class);
     }
 }
