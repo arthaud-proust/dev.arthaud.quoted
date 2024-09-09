@@ -16,7 +16,7 @@
             </label>
 
             <label class="flex flex-col gap-2">
-                <span>Auteur</span>
+                <span>Citation</span>
                 <textarea name="content" type="text" required rows="2" class="resize-none">{{ old('content') }}</textarea>
                 @error('content')
                 <span class="text-red-100">{{$message}}</span>
