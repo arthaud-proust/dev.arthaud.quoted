@@ -2,7 +2,8 @@
 
 php artisan down
 
-git reset --hard origin/release/production
+git fetch
+git reset --hard origin/release/main
 
 # update database
 php artisan migrate --force
