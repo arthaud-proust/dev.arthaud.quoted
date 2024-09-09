@@ -2,7 +2,7 @@
     <div class="container">
         <section>
 
-            <h1 class="text-9xl -ml-2">Quoted.</h1>
+            <h1 class="text-8xl md:text-9xl -ml-2">Quoted.</h1>
             <p class="mt-2 text-4xl">Des citations philosophiques et poétiques.</p>
         </section>
 

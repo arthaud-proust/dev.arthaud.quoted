@@ -23,4 +23,12 @@
     button {
         @apply bg-bunker-800 font-bold hover:bg-bunker-700;
     }
+
+    .text-h1 {
+        @apply text-7xl md:text-9xl;
+    }
+
+    .text-h2 {
+
+    }
 }

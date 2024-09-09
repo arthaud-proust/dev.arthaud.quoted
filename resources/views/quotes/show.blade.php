@@ -1,12 +1,12 @@
 <x-layout>
     <div class="container flex flex-col">
-        <blockquote class="mt-32 text-7xl font-medium leading-tight">
+        <blockquote class="mt-4 md:mt-32 text-4xl md:text-7xl font-medium leading-tight">
             {{ $quote->content }}
         </blockquote>
 
         <p class="mt-2 text-bunker-200">- {{ $quote->author }}</p>
 
-        <div class="ml-auto mt-32">
+        <div class="md:ml-auto mt-32">
             <p class="">Ajouté par {{ $quote->user->name }} le {{ $quote->created_at->translatedFormat('j F Y') }}</p>
             <p class="mt-2">{{ $quote->views }} vues</p>
 
