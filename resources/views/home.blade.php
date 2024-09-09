@@ -6,17 +6,17 @@
         </section>
 
         <section>
-            <h2 class="text-3xl mt-40">Citation au hasard</h2>
+            <h2 class="text-2xl sm:text-3xl mt-40">Citation au hasard</h2>
             <div class="mt-4">
                 <x-quote.card :quote="$randomQuote" />
             </div>
         </section>
 
         <section>
-            <div class="text-3xl mt-40 flex items-center gap-2">
+            <div class="text-2xl sm:text-3xl mt-40 flex items-center space-x-2">
                 <h2>Derniers ajouts</h2>
-                -
-                <a href="{{ route('quotes.index') }}" class="text-3xl link">Tout voir</a>
+                <span>-</span>
+                <a href="{{ route('quotes.index') }}" class="text-2xl sm:text-3xl link">Tout voir</a>
             </div>
             <div class="mt-4">
                 <x-quote.grid :quotes="$lastQuotes" />

@@ -35,7 +35,7 @@
                     <button class="z-50 md:hidden" id="menuCloser">Fermer</button>
                 </div>
 
-                <div class="grow flex flex-col gap-12 py-8 justify-center px-4">
+                <div class="grow flex flex-col space-y-8 py-8 justify-center px-4">
                     <form action="{{ route('quotes.index') }}" method="GET" class="flex bg-bunker-950 rounded-lg">
                         <label for="q" class="sr-only">Rechercher</label>
                         <input class="w-full" id="q" name="q" type="text" placeholder="Par auteur, mot..."

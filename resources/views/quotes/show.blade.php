@@ -9,12 +9,12 @@
         </div>
 
         <div class="md:ml-auto mb-32">
-            <p class="mt-2 flex gap-2 items-center">
+            <p class="mt-2 flex space-x-2 items-center">
                 <x-heroicon-s-eye class="size-5" />
                 <span>{{ $quote->views }}</span>
             </p>
 
-            <p class="mt-2 flex gap-2 items-center">
+            <p class="mt-2 flex space-x-2 items-center">
                 <x-heroicon-s-share class="size-5" />
                 <span>{{ $quote->hash }}</span>
                 {{--                <code class="select-all text-base rounded-md p-2 bg-bunker-950">--}}
@@ -22,12 +22,12 @@
                 {{--                </code>--}}
             </p>
 
-            <p class="mt-2 flex gap-2 items-center">
+            <p class="mt-2 flex space-x-2 items-center">
                 <x-heroicon-s-user class="size-5" />
                 <span>Par {{ $quote->user->name }}</span>
             </p>
 
-            <p class="mt-2 flex gap-2 items-center">
+            <p class="mt-2 flex space-x-2 items-center">
                 <x-heroicon-s-calendar class="size-5" />
                 <span>{{ $quote->created_at->translatedFormat('j M Y') }}</span>
             </p>
