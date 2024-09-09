@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->boolean('admin');
         });
 
-        User::update(['admin' => false]);
+        User::query()->update(['admin' => false]);
     }
 
     /**
