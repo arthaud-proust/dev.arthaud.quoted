@@ -26,7 +26,7 @@
             <label class="flex flex-col gap-2">
                 <div class="flex items-end px-0.5">
                     <span>Votre email</span>
-                    <span class="text-base text-bunker-200 ml-auto">Ne sera pas affiché</span>
+                    <span class="text-base text-bunker-200 ml-auto">Partiellement affiché</span>
                 </div>
                 <input name="email" type="email" value="{{ old('email') }}" required>
                 @error('email')
