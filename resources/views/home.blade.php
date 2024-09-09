@@ -1,4 +1,4 @@
-<x-layout>
+<x-layouts.app>
     <div class="container">
         <section>
 
@@ -24,4 +24,4 @@
             </div>
         </section>
     </div>
-</x-layout>
+</x-layouts.app>

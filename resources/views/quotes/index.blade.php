@@ -1,4 +1,4 @@
-<x-layout>
+<x-layouts.app>
     <div class="container">
         <h1 class="text-4xl">
             @if($quotes->total() === 0)
@@ -21,4 +21,4 @@
             {!! $quotes->withQueryString()->links() !!}
         </div>
     </div>
-</x-layout>
+</x-layouts.app>

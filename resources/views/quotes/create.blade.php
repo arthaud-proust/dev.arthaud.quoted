@@ -1,4 +1,4 @@
-<x-layout>
+<x-layouts.app>
     <div class="container max-w-lg">
         <h1 class="text-4xl">Ajouter une citation</h1>
         <p class="mt-2 text-bunker-200">
@@ -37,4 +37,4 @@
             <button type="submit">Ajouter la citation</button>
         </form>
     </div>
-</x-layout>
+</x-layouts.app>
