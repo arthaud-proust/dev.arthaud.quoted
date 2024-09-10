@@ -21,6 +21,7 @@ class StoreQuoteRequest extends FormRequest
         return [
             'author' => ['required', 'string', 'max:255'],
             'content' => ['required', 'string', 'max:255'],
+            'source' => ['nullable', 'string', 'max:255'],
             'email' => ['required', 'email'],
         ];
     }

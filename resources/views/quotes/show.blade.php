@@ -5,7 +5,7 @@
                 {{ $quote->content }}
             </blockquote>
 
-            <p class="mt-2 text-bunker-200">- {{ $quote->author }}</p>
+            <p class="mt-2 text-bunker-200">- {{ $quote->author }}@if($quote->source) dans {{ $quote->source }}@endif</p>
         </div>
 
         <div class="md:ml-auto mb-32">
@@ -17,9 +17,6 @@
             <p class="mt-2 flex space-x-2 items-center">
                 <x-heroicon-s-share class="size-5" />
                 <span>{{ $quote->hash }}</span>
-                {{--                <code class="select-all text-base rounded-md p-2 bg-bunker-950">--}}
-                {{--                    {{ route('quotes.show', ['quoteHash'=>$quote->hash]) }}--}}
-                {{--                </code>--}}
             </p>
 
             <p class="mt-2 flex space-x-2 items-center">

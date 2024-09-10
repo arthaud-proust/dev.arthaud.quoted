@@ -18,6 +18,7 @@ class Quote extends Model
         'author',
         'content',
         'validated',
+        'source',
         'views',
     ];
 

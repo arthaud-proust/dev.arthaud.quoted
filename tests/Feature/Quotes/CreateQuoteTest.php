@@ -4,6 +4,7 @@ namespace Tests\Feature\Quotes;
 
 use App\Models\User;
 use App\Notifications\NewQuote;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Notification;
 use Tests\TestCase;
@@ -17,6 +18,7 @@ class CreateQuoteTest extends TestCase
         $response = $this->post('/quotes', [
             'author' => 'John doe',
             'content' => 'Lorem ipsum',
+            'source'=> 'https://example.com',
             'email' => 'john.doe@email.com',
         ]);
 
@@ -25,6 +27,7 @@ class CreateQuoteTest extends TestCase
         $this->assertDatabaseHas('quotes', [
             'author' => 'John doe',
             'content' => 'Lorem ipsum',
+            'source'=> 'https://example.com',
         ]);
     }
 

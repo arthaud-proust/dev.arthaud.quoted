@@ -54,6 +54,7 @@ class QuoteController extends Controller
         $quote = Quote::create([
             'author' => $validated['author'],
             'content' => $validated['content'],
+            'source' => $validated['source'] ?? null,
             'user_id' => $user->id,
         ]);
 

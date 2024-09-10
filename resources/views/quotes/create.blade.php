@@ -1,5 +1,5 @@
 <x-layouts.app>
-    <div class="container max-w-lg">
+    <div class="container max-w-lg lg:max-w-xl">
         <h1 class="text-4xl">Ajouter une citation</h1>
         <p class="mt-2 text-bunker-200">
             La citation sera ajoutée une fois validée par un modérateur
@@ -19,6 +19,14 @@
                 <span>Citation</span>
                 <textarea name="content" type="text" required rows="2" class="resize-none">{{ old('content') }}</textarea>
                 @error('content')
+                <span class="text-red-100">{{$message}}</span>
+                @enderror
+            </label>
+
+            <label class="flex flex-col gap-2">
+                <span>Source (optionnel)</span>
+                <textarea name="source" type="text" rows="2" class="resize-none">{{ old('source') }}</textarea>
+                @error('source')
                 <span class="text-red-100">{{$message}}</span>
                 @enderror
             </label>
