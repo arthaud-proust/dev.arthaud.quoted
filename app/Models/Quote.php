@@ -20,6 +20,8 @@ class Quote extends Model
         'validated',
         'source',
         'views',
+        'created_at',
+        'updated_at',
     ];
 
     protected $attributes = [

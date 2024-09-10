@@ -29,6 +29,9 @@ class QuoteResource extends Resource
                 Forms\Components\Textarea::make('content')
                     ->required()
                     ->maxLength(255),
+                Forms\Components\TextInput::make('source')
+                    ->nullable()
+                    ->maxLength(255),
                 Forms\Components\Toggle::make('validated')
                     ->required(),
                 Forms\Components\TextInput::make('views')
@@ -70,7 +73,8 @@ class QuoteResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])
+            ->defaultSort('created_at', 'desc');
     }
 
     public static function getRelations(): array
