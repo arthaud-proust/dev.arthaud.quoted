@@ -13,7 +13,7 @@ class ValidateQuoteTest extends TestCase
 
     public function test_cannot_validate_without_signed_url(): void
     {
-        $quote = Quote::factory()->create();
+        $quote = Quote::factory()->notValidated()->create();
 
         $nonSignedUrl = URL::route('quotes.validate', ['quoteHash' => $quote->hash]);
         $response = $this->get($nonSignedUrl);
@@ -26,7 +26,7 @@ class ValidateQuoteTest extends TestCase
 
     public function test_can_validate_with_signed_url(): void
     {
-        $quote = Quote::factory()->create();
+        $quote = Quote::factory()->notValidated()->create();
 
         $response = $this->get($quote->temporaryValidationUrl());
 

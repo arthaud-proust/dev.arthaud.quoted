@@ -10,11 +10,9 @@ class ViewQuoteTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_cannot_view_unvalidated_quote(): void
+    public function test_cannot_view_not_validated_quote(): void
     {
-        $quote = Quote::factory()->create([
-            'validated' => false,
-        ]);
+        $quote = Quote::factory()->notValidated()->create();
 
         $response = $this->get("/$quote->hash");
 
@@ -23,9 +21,7 @@ class ViewQuoteTest extends TestCase
 
     public function test_can_view_validated_quote(): void
     {
-        $quote = Quote::factory()->create([
-            'validated' => true,
-        ]);
+        $quote = Quote::factory()->validated()->create();
 
         $response = $this->get("/$quote->hash");
 
@@ -34,9 +30,8 @@ class ViewQuoteTest extends TestCase
 
     public function test_view_quote_update_its_view_count(): void
     {
-        $quote = Quote::factory()->create([
+        $quote = Quote::factory()->validated()->create([
             'views' => 0,
-            'validated' => true,
         ]);
 
         $response = $this->get("/$quote->hash");

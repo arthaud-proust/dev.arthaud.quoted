@@ -25,4 +25,22 @@ class QuoteFactory extends Factory
             'user_id' => User::factory(),
         ];
     }
+
+    public function notValidated(): Factory
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'validated' => false,
+            ];
+        });
+    }
+
+    public function validated(): Factory
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'validated' => true,
+            ];
+        });
+    }
 }

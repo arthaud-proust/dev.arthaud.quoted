@@ -12,13 +12,9 @@ class ListQuoteTest extends TestCase
 
     public function test_only_display_validated_quotes(): void
     {
-        $validated = Quote::factory()->create([
-            'validated' => true,
-        ]);
+        $validated = Quote::factory()->validated()->create();
 
-        $notValidated = Quote::factory()->create([
-            'validated' => false,
-        ]);
+        $notValidated = Quote::factory()->notValidated()->create();
 
         $response = $this->get("/quotes");
 
