@@ -1,4 +1,4 @@
-![Capture d’écran 2024-09-13 à 13 37 26 (1)](https://github.com/user-attachments/assets/b2de3ffc-375e-4234-8861-fe7a7d3ad341)
+[![Capture d’écran 2024-09-13 à 13 37 26 (1)](https://github.com/user-attachments/assets/b2de3ffc-375e-4234-8861-fe7a7d3ad341)](https://quoted.arthaud.dev/avorb)
 # Another website of quotes
 
 ## Features
