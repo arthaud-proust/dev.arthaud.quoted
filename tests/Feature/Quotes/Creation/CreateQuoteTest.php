@@ -3,6 +3,7 @@
 namespace Tests\Feature\Quotes\Creation;
 
 use App\Jobs\NotifyNewQuote;
+use App\Models\Quote;
 use App\Models\User;
 use App\Notifications\NewQuote;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -19,7 +20,7 @@ class CreateQuoteTest extends TestCase
         $response = $this->post('/quotes', [
             'author' => 'John doe',
             'content' => 'Lorem ipsum',
-            'source'=> 'https://example.com',
+            'source' => 'https://example.com',
             'email' => 'john.doe@email.com',
         ]);
 
@@ -28,8 +29,28 @@ class CreateQuoteTest extends TestCase
         $this->assertDatabaseHas('quotes', [
             'author' => 'John doe',
             'content' => 'Lorem ipsum',
-            'source'=> 'https://example.com',
+            'source' => 'https://example.com',
         ]);
+    }
+
+    public function test_cannot_create_quote_that_already_exists(): void
+    {
+        Quote::factory()->create([
+            'author' => 'John doe',
+            'content' => 'Lorem ipsum',
+            'source' => 'https://example.com',
+        ]);
+
+        $response = $this->post('/quotes', [
+            'author' => 'John doe',
+            'content' => 'Lorem ipsum',
+            'source' => 'https://example.com',
+            'email' => 'john.doe@email.com',
+        ]);
+
+        $response->assertSessionHasErrors('content');
+
+        $this->assertDatabaseCount('quotes', 1);
     }
 
     public function test_created_quote_is_not_validated(): void

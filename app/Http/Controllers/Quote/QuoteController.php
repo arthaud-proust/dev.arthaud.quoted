@@ -45,6 +45,13 @@ class QuoteController extends Controller
     public function store(StoreQuoteRequest $request): RedirectResponse
     {
         $validated = $request->validated();
+        $normalizedQuoteContent = $this->quoteContentNormalizer->normalize($validated['content']);
+
+        if (Quote::where('content', $normalizedQuoteContent)->exists()) {
+            return redirect()->back()->withErrors([
+                'content' => 'Cette citation existe déjà.',
+            ]);
+        }
 
         $user = User::firstOrCreate(
             [
@@ -58,7 +65,7 @@ class QuoteController extends Controller
 
         $quote = Quote::create([
             'author' => $validated['author'],
-            'content' => $this->quoteContentNormalizer->normalize($validated['content']),
+            'content' => $normalizedQuoteContent,
             'source' => $validated['source'] ?? null,
             'user_id' => $user->id,
         ]);
