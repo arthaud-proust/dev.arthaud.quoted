@@ -9,10 +9,8 @@ use App\Http\Resources\QuoteResource;
 use App\Jobs\NotifyNewQuote;
 use App\Models\Quote;
 use App\Models\User;
-use App\Notifications\NewQuote;
+use App\Normalizers\QuoteContentNormalizer;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Queue\Jobs\Job;
-use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Str;
 use function abort;
 use function redirect;
@@ -20,6 +18,11 @@ use function view;
 
 class QuoteController extends Controller
 {
+    public function __construct(
+        private readonly QuoteContentNormalizer $quoteContentNormalizer
+    ) {
+    }
+
     public function index(SearchQuoteRequest $request)
     {
         $validated = $request->validated();
@@ -55,7 +58,7 @@ class QuoteController extends Controller
 
         $quote = Quote::create([
             'author' => $validated['author'],
-            'content' => $validated['content'],
+            'content' => $this->quoteContentNormalizer->normalize($validated['content']),
             'source' => $validated['source'] ?? null,
             'user_id' => $user->id,
         ]);

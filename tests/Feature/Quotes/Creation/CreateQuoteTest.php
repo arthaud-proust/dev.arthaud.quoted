@@ -1,11 +1,10 @@
 <?php
 
-namespace Tests\Feature\Quotes;
+namespace Tests\Feature\Quotes\Creation;
 
 use App\Jobs\NotifyNewQuote;
 use App\Models\User;
 use App\Notifications\NewQuote;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\Notification;
