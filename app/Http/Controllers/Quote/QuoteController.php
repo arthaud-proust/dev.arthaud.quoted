@@ -6,10 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\SearchQuoteRequest;
 use App\Http\Requests\StoreQuoteRequest;
 use App\Http\Resources\QuoteResource;
+use App\Jobs\NotifyNewQuote;
 use App\Models\Quote;
 use App\Models\User;
 use App\Notifications\NewQuote;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Queue\Jobs\Job;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Str;
 use function abort;
@@ -58,7 +60,7 @@ class QuoteController extends Controller
             'user_id' => $user->id,
         ]);
 
-        Notification::send(User::admin()->get(), new NewQuote($quote));
+        NotifyNewQuote::dispatchAfterResponse($quote);
 
         return redirect()->route('quotes.index');
     }

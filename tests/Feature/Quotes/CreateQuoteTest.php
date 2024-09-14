@@ -2,10 +2,12 @@
 
 namespace Tests\Feature\Quotes;
 
+use App\Jobs\NotifyNewQuote;
 use App\Models\User;
 use App\Notifications\NewQuote;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\Notification;
 use Tests\TestCase;
 
@@ -99,5 +101,18 @@ class CreateQuoteTest extends TestCase
         ]);
 
         Notification::assertSentTo($admin, NewQuote::class);
+    }
+
+    public function test_create_quote_notify_after_response(): void
+    {
+        Bus::fake();
+
+        $this->post('/quotes', [
+            'author' => 'John doe',
+            'content' => 'Lorem ipsum',
+            'email' => 'john.doe@email.com',
+        ]);
+
+        Bus::assertDispatchedAfterResponse(NotifyNewQuote::class);
     }
 }
