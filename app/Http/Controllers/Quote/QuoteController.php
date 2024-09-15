@@ -30,10 +30,11 @@ class QuoteController extends Controller
             ->when(isset($validated['q']), static fn($query) => $query
                 ->where('content', 'LIKE', "%{$validated['q']}%")
                 ->orWhere('author', 'LIKE', "%{$validated['q']}%")
-            );
+            )
+            ->latest('created_at');
 
         return view('quotes.index', [
-            'quotes' => $quotes->paginate(10),
+            'quotes' => $quotes->paginate(20),
         ]);
     }
 
