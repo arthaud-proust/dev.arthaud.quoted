@@ -36,7 +36,7 @@
                     <span>Votre email</span>
                     <span class="text-base text-bunker-200 ml-auto">Partiellement affiché</span>
                 </div>
-                <input name="email" type="email" value="{{ old('email') }}" required>
+                <input id="email" name="email" type="email" value="{{ old('email') }}" required>
                 @error('email')
                 <span class="text-red-100">{{$message}}</span>
                 @enderror
@@ -44,5 +44,16 @@
 
             <button type="submit">Ajouter la citation</button>
         </form>
+        <script>
+            window.addEventListener("DOMContentLoaded", function() {
+                const emailInput = document.getElementById("email");
+                const EMAIL_LC_KEY = "quoted.email";
+                emailInput.value = localStorage.getItem(EMAIL_LC_KEY);
+
+                emailInput.addEventListener("keyup", (e) => {
+                    localStorage.setItem(EMAIL_LC_KEY, e.target.value);
+                });
+            });
+        </script>
     </div>
 </x-layouts.app>
