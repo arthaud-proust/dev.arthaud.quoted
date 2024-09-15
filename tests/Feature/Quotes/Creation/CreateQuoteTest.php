@@ -24,7 +24,8 @@ class CreateQuoteTest extends TestCase
             'email' => 'john.doe@email.com',
         ]);
 
-        $response->assertRedirect('/quotes');
+        $response->assertRedirect('/quotes/create');
+        $response->assertSessionHas('success', 'Votre citation a bien été envoyée.');
 
         $this->assertDatabaseHas('quotes', [
             'author' => 'John doe',
@@ -61,7 +62,7 @@ class CreateQuoteTest extends TestCase
             'email' => 'john.doe@email.com',
         ]);
 
-        $response->assertRedirect('/quotes');
+        $response->assertRedirect('/quotes/create');
 
         $this->assertDatabaseHas('quotes', [
             'author' => 'John doe',
@@ -82,7 +83,7 @@ class CreateQuoteTest extends TestCase
             'email' => 'john.doe@email.com',
         ]);
 
-        $response->assertRedirect('/quotes');
+        $response->assertRedirect('/quotes/create');
 
         $this->assertDatabaseHas('quotes', [
             'author' => 'John doe',
@@ -99,7 +100,7 @@ class CreateQuoteTest extends TestCase
             'email' => 'john.doe@email.com',
         ]);
 
-        $response->assertRedirect('/quotes');
+        $response->assertRedirect('/quotes/create');
 
         $this->assertDatabaseHas('users', [
             'email' => 'john.doe@email.com',

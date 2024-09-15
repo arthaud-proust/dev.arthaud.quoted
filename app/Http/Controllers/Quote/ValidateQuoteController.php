@@ -20,6 +20,8 @@ class ValidateQuoteController extends Controller
             'validated' => true,
         ]);
 
-        return redirect()->route('quotes.show', ['quoteHash' => $quote->hash]);
+        return redirect()->route('quotes.show', ['quoteHash' => $quote->hash])->with(
+            'success', 'La citation a bien été validée.'
+        );
     }
 }

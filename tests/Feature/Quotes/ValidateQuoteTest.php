@@ -31,6 +31,7 @@ class ValidateQuoteTest extends TestCase
         $response = $this->get($quote->temporaryValidationUrl());
 
         $response->assertRedirectToRoute('quotes.show', ['quoteHash' => $quote->hash]);
+        $response->assertSessionHas('success', 'La citation a bien été validée.');
 
         $quote->refresh();
         $this->assertTrue($quote->validated);

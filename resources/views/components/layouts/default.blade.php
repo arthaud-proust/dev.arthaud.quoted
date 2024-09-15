@@ -55,19 +55,33 @@
         </dialog>
 
         <script>
-            const menu = document.getElementById('menu');
-            document.getElementById('menuOpener').addEventListener('click', function() {
+            const menu = document.getElementById("menu");
+            document.getElementById("menuOpener").addEventListener("click", function() {
                 menu.showModal();
             });
-            document.getElementById('menuCloser').addEventListener('click', function() {
+            document.getElementById("menuCloser").addEventListener("click", function() {
                 menu.close();
             });
         </script>
     </div>
 </header>
 
-<main class="w-full overflow-x-hidden">
+<main class="min-h-screen w-full overflow-x-hidden">
     {{ $slot }}
+
+    <div class="fixed bottom-4 right-4 z-50">
+        @if(session('success'))
+            <div class="rounded-md px-6 py-4 text-emerald-600 bg-emerald-100 font-semibold">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        @if(session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
+    </div>
 </main>
 
 <footer class=" py-20 bg-bunker-800">

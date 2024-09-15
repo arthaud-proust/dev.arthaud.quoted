@@ -2,7 +2,7 @@
     <div class="container max-w-lg lg:max-w-xl">
         <h1 class="text-4xl">Ajouter une citation</h1>
         <p class="mt-2 text-bunker-200">
-            La citation sera ajoutée une fois validée par un modérateur
+            La citation sera ajoutée une fois validée
         </p>
         <form class="flex flex-col gap-6 mt-12" action="{{route('quotes.store')}}" method="POST">
             @csrf
@@ -24,8 +24,12 @@
             </label>
 
             <label class="flex flex-col gap-2">
-                <span>Source (optionnel)</span>
-                <textarea name="source" type="text" rows="2" class="resize-none">{{ old('source') }}</textarea>
+                <div class="flex items-end px-0.5">
+                    <span>Source</span>
+                    <span class="text-base text-bunker-200 ml-auto">Optionnel</span>
+                </div>
+                <textarea name="source" type="text" rows="2" class="resize-none placeholder-bunker-400"
+                          placeholder="Livre, récit...">{{ old('source') }}</textarea>
                 @error('source')
                 <span class="text-red-100">{{$message}}</span>
                 @enderror

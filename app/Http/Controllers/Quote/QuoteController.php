@@ -72,7 +72,9 @@ class QuoteController extends Controller
 
         NotifyNewQuote::dispatchAfterResponse($quote);
 
-        return redirect()->route('quotes.index');
+        return redirect()->route('quotes.create')->with([
+            'success' => 'Votre citation a bien été envoyée.',
+        ]);
     }
 
     public function show(Quote $quote)
